@@ -1,0 +1,472 @@
+<!doctype html>
+<html lang="sw">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>TanzaniaDevAcademy — Jifunze Website & Mobile App Development</title>
+<meta name="description" content="Jifunze kutengeneza Websites & Mobile Apps kwa kutumia HTML, CSS, JavaScript, React JS & React Native. Pata skills zinazolipa 70,000/=">
+
+<style>
+/* ====================== BRAND COLORS ====================== */
+:root{
+  --bg:#05060a;
+  --glass:rgba(255,255,255,0.05);
+  --panel:#0b0d14;
+  --text:#eaf6ff;
+  --muted:#9fb0c9;
+  --accent1:#5b8cff;
+  --accent2:#8b5bff;
+  --max:980px;
+}
+
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{
+  background:var(--bg);
+  font-family:Inter,system-ui;
+  color:var(--text);
+  overflow-x:hidden;
+}
+
+/* MATRIX RAIN BACKGROUND */
+canvas#matrix{
+  position:fixed;
+  top:0;
+  left:0;
+  width:100vw;
+  height:100vh;
+  z-index:-1;
+  opacity:0.18;
+}
+
+/* ====================== GLOBAL CONTAINER ====================== */
+.container{max-width:var(--max);margin:0 auto;padding:16px}
+
+/* ====================== HEADER ====================== */
+header{
+  position:sticky;top:0;z-index:900;
+  background:rgba(5,6,12,0.65);
+  backdrop-filter:blur(12px);
+  border-bottom:1px solid rgba(255,255,255,0.06);
+}
+.nav{
+  display:flex;justify-content:space-between;align-items:center;
+  padding:12px 16px;
+}
+.logo{
+  display:flex;align-items:center;gap:10px;
+  font-weight:800;font-size:18px;color:var(--accent1);
+}
+.logo-bubble{
+  width:40px;height:40px;border-radius:10px;
+  background:linear-gradient(135deg,var(--accent1),var(--accent2));
+  display:flex;align-items:center;justify-content:center;
+  color:#021026;font-weight:900;
+  box-shadow:0 8px 25px rgba(91,140,255,0.25);
+}
+
+/* ====================== HERO ====================== */
+.hero{
+  text-align:center;padding:65px 20px;
+  position:relative;overflow:hidden;
+}
+
+/* FLOATING 3D MOCKUPS */
+.float{
+  position:absolute;
+  width:240px;height:140px;
+  backdrop-filter:blur(12px);
+  background:var(--glass);
+  border:1px solid rgba(255,255,255,0.07);
+  border-radius:14px;
+  color:var(--muted);
+  display:flex;align-items:center;justify-content:center;
+  font-size:14px;
+  box-shadow:0 25px 60px rgba(0,0,0,0.4);
+  transform-style:preserve-3d;
+  transition:transform .2s;
+}
+
+#float1{top:18%;left:8%;transform:rotateY(-12deg) rotateX(8deg);}
+#float2{top:8%;right:10%;transform:rotateY(12deg) rotateX(-6deg);}
+
+.hero h1{
+  font-size:30px;font-weight:900;margin-bottom:10px;
+}
+.accent{
+  background:linear-gradient(90deg,var(--accent1),var(--accent2));
+  -webkit-background-clip:text;color:transparent;
+}
+.hero p{color:var(--muted);margin-top:6px}
+
+/* CTA */
+.primary-cta{
+  background:linear-gradient(90deg,var(--accent1),var(--accent2));
+  padding:14px 22px;border-radius:12px;
+  color:#021026;font-weight:900;text-decoration:none;
+  display:inline-block;margin-top:16px;
+  box-shadow:0 15px 40px rgba(91,140,255,0.2);
+  transition:transform .2s;
+}
+.primary-cta:hover{transform:scale(1.04)}
+
+/* ====================== GENERAL SECTIONS ====================== */
+section{padding:40px 16px}
+h2{text-align:center;color:var(--accent2);margin-bottom:16px;font-size:22px;font-weight:800}
+.blurb{text-align:center;color:var(--muted);max-width:760px;margin:0 auto}
+
+/* GLASS PANELS */
+.feature, .testimonial, .offer-box, .grid div, .money-box{
+  background:var(--glass);
+  backdrop-filter:blur(14px);
+  border:1px solid rgba(255,255,255,0.07);
+  box-shadow:0 20px 60px rgba(0,0,0,0.35);
+}
+
+/* MONEY SECTION */
+.money-box{
+  padding:20px;margin-top:25px;border-radius:14px;
+  font-size:18px;font-weight:900;text-align:center;
+  line-height:1.7;color:var(--text);
+}
+.money-box span{color:var(--accent1);font-size:22px}
+
+/* ====================== MOCKUP ====================== */
+.mockup{
+  width:100%;height:180px;border-radius:12px;
+  margin:14px 0;display:flex;align-items:center;justify-content:center;
+  font-size:14px;color:var(--muted);
+  background:var(--glass);
+  border:1px solid rgba(255,255,255,0.065);
+  backdrop-filter:blur(12px);
+}
+
+/* ====================== GRID ====================== */
+.grid{
+  display:grid;gap:16px;
+  grid-template-columns:1fr;
+}
+.feature{
+  padding:16px;border-radius:12px;
+}
+.feature h3{color:var(--accent1);margin-bottom:6px}
+.feature p{color:var(--muted);font-size:14px;line-height:1.6}
+
+/* ====================== TESTIMONIALS ====================== */
+.testimonial{
+  padding:16px;border-radius:12px;
+  display:flex;gap:12px;margin-bottom:12px;
+}
+.avatar{
+  width:52px;height:52px;border-radius:50%;
+  background:linear-gradient(90deg,var(--accent1),var(--accent2));
+  color:#021026;font-weight:900;display:flex;align-items:center;justify-content:center;
+}
+.t-text{color:var(--muted);font-size:14px;line-height:1.5}
+
+/* ====================== OFFER SECTION ====================== */
+.offer{text-align:center;margin-top:10px}
+.offer-box{
+  padding:16px;border-radius:12px;
+}
+.price-big{font-size:30px;font-weight:900;margin-bottom:8px}
+.old{text-decoration:line-through;color:var(--muted);font-size:16px}
+
+/* WHATSAPP CTA */
+.wp-btn{
+  background:linear-gradient(90deg,var(--accent1),var(--accent2));
+  padding:14px 20px;border-radius:12px;
+  color:#021026;font-weight:900;text-decoration:none;
+  box-shadow:0 18px 50px rgba(91,140,255,0.2);
+  display:inline-block;margin-top:12px;
+}
+
+/* ====================== STICKY CTA ====================== */
+.sticky-cta{
+  position:fixed;bottom:0;left:0;width:100%;z-index:999;
+  background:linear-gradient(90deg,var(--accent2),var(--accent1));
+  padding:14px;text-align:center;
+}
+.sticky-cta a{
+  color:#021026;font-weight:900;text-decoration:none;font-size:18px;
+}
+
+/* SCROLL ANIMATION */
+.reveal{
+  opacity:0;transform:translateY(25px);
+  transition:opacity .8s ease, transform .8s ease;
+}
+.reveal.visible{
+  opacity:1;transform:translateY(0);
+}
+
+/* SMALL SCREENS */
+@media(max-width:520px){
+  #float1,#float2{display:none}
+}
+</style>
+</head>
+
+<body>
+
+<!-- MATRIX RAIN CANVAS -->
+<canvas id="matrix"></canvas>
+
+<script>
+// MATRIX RAIN
+const canvas=document.getElementById("matrix");
+const ctx=canvas.getContext("2d");
+
+canvas.width=window.innerWidth;
+canvas.height=window.innerHeight;
+
+const columns = canvas.width/14;
+const drops = [];
+
+for(let i=0;i<columns;i++){ drops[i]=1; }
+
+function draw(){
+  ctx.fillStyle="rgba(5,6,12,0.05)";
+  ctx.fillRect(0,0,canvas.width,canvas.height);
+
+  ctx.fillStyle="#5b8cff";
+  ctx.font="14px monospace";
+
+  for(let i=0;i<drops.length;i++){
+    const text = String.fromCharCode(0x30A0 + Math.random()*96);
+    ctx.fillText(text, i*14, drops[i]*14);
+    if(drops[i]*14 > canvas.height && Math.random()>0.96){ drops[i]=0; }
+    drops[i]++;
+  }
+}
+setInterval(draw,40);
+
+// 3D PARALLAX
+document.addEventListener("mousemove", e=>{
+  const x = (e.clientX - window.innerWidth/2)/40;
+  const y = (e.clientY - window.innerHeight/2)/40;
+  float1.style.transform=`translate(${x}px,${y}px) rotateY(-12deg) rotateX(8deg)`;
+  float2.style.transform=`translate(${-x}px,${-y}px) rotateY(12deg) rotateX(-6deg)`;
+});
+
+// SCROLL REVEAL
+function reveal(){
+  document.querySelectorAll('.reveal').forEach(el=>{
+    if(el.getBoundingClientRect().top < window.innerHeight - 60){
+      el.classList.add('visible')
+    }
+  });
+}
+window.addEventListener("scroll", reveal);
+window.addEventListener("load", reveal);
+</script>
+
+
+<header>
+  <div class="nav">
+    <div class="logo"><div class="logo-bubble">TD</div>TanzaniaDevAcademy</div>
+  </div>
+</header>
+
+<!-- FLOATING MOCKUPS -->
+<div class="float" id="float1">[Mockup 1]</div>
+<div class="float" id="float2">[Mockup 2]</div>
+
+<!-- HERO -->
+<section class="hero reveal">
+  <h1>Jifunze <span class="accent">Web & Mobile App Development</span> Inayolipa</h1>
+  <p>HTML, CSS, JavaScript, React JS & React Native — Ujuzi unaokuweka kwenye market ya dunia.</p>
+
+  <a href="https://wa.me/255620657107?text=READY" class="primary-cta">
+    Anza kwa 70,000/= tu ➜
+  </a>
+</section>
+
+<!-- WHY -->
+<section class="reveal">
+  <h2>Kwanini Ujuzi Huu?</h2>
+  <p class="blurb" style="font-weight: bolder; color: #ffff;">Watu duniani wanalipwa si kwa elimu ya shule… bali kwa *skills* zinazotengeneza bidhaa: Websites, Systems, Apps. Ukiweza kutengeneza moja tu — unakuwa na mashine ya pesa maisha yote.</p>
+</section>
+
+<!-- MONEY SECTION -->
+<section class="reveal">
+  <div class="money-box">
+    Unaweza kutengeneza <span>150,000/= – 600,000/=</span> kwa website moja.<br>
+    Unaweza kutengeneza <span>300,000/= – 2,000,000/=</span> kwa app moja.<br>
+    Ukiwa freelancer unaweza kupata <span>$200 – $1500</span> kwa project ndogo ndogo.<br>
+    Huu ni ujuzi ambao NI MASHINE YA FEDHA.
+  </div>
+</section>
+
+<!-- WEB DEV SECTION -->
+<section class="reveal">
+  <h2>Web Development (HTML → CSS → JavaScript → React JS)</h2>
+  <p class="blurb">Hii ndiyo skill inayotafutwa duniani...</p>
+
+  <div class="mockup">
+  <img src="img/webdev.png" alt="web development screenshot image" style="width:100%;height:180px;border-radius:12px;
+  margin:14px 0;display:flex;align-items:center;justify-content:center;
+  font-size:14px;color:var(--muted);
+  background:var(--glass);
+  border:1px solid rgba(255,255,255,0.065);
+  backdrop-filter:blur(12px);"/>
+  </div>
+
+  <div class="grid">
+
+    <div class="feature">
+      <h3>Kile Utajifunza</h3>
+      <p>
+        • HTML (msingi wa website)<br>
+        • CSS (design & responsiveness)<br>
+        • JavaScript (interactivity & logic)<br>
+        • React JS (framework inayotumiwa na makampuni makubwa)<br>
+        • Kujenga portfolio, login system & dashboard<br>
+      </p>
+    </div>
+
+    <div class="feature">
+      <h3>Kwanini Ni Skill Ya Pesa?</h3>
+      <p>
+        • Biashara zote zinahitaji website.<br>
+        • Freelancing: Upwork, Fiverr & market ya ndani.<br>
+        • Uwezo wa kufanya kazi remote na kampuni duniani.<br>
+        • Unaweza kuanza biashara yako mwenyewe kama developer.<br>
+        • Kuuza digital products kama templates & themes.<br><br>
+
+        <strong>Uwezo wa Kufanya Kazi Aina Zote</strong><br>
+        · Freelancing duniani<br>
+        · Remote jobs<br>
+        · Kuanzisha biashara yako<br>
+        · Kuwahudumia wateja ndani & nje<br><br>
+
+        <strong>Soko la Kimataifa</strong><br>
+        · Malipo makubwa kuliko kazi nyingi za kawaida<br>
+        · Uwezo wa kuchagua miradi unayopenda<br><br>
+
+        <em>NB: Inalipa sana — lakini inahitaji mazoezi, uvumilivu & nidhamu ya kujifunza.</em>
+      </p>
+    </div>
+
+    <div class="feature">
+      <h3>Jinsi Ya Kutengeneza Pesa</h3>
+      <p>
+        • Kutengeneza websites kwa 150k–600k<br>
+        • Landing pages & dashboards<br>
+        • Local SME websites<br>
+        • Remote projects duniani<br>
+      </p>
+    </div>
+
+  </div>
+</section>
+
+<!-- APP DEV -->
+<section class="reveal">
+  <h2>Mobile App Development (React Native)</h2>
+  <p class="blurb">Future yote ya tech ipo kwenye apps...</p>
+
+  <div class="mockup">
+    <img src="img/appdev.jpg" alt="web development screenshot image" style="width:100%;height:180px;border-radius:12px;
+  margin:14px 0;display:flex;align-items:center;justify-content:center;
+  font-size:14px;color:var(--muted);
+  background:var(--glass);
+  border:1px solid rgba(255,255,255,0.065);
+  backdrop-filter:blur(12px);"/></div>
+
+  <div class="grid">
+
+    <div class="feature">
+      <h3>Kile Utajifunza</h3>
+      <p>
+        • React Native fundamentals<br>
+        • Navigation (Stack, Tab, Drawer)<br>
+        • State management: Redux Toolkit / Zustand<br>
+        • API requests: Axios / Fetch<br>
+        • Forms: Formik + Yup validation<br>
+        • Storage: AsyncStorage / MMKV<br><br>
+
+        <strong>Styling & UI</strong><br>
+        · Styled-components<br>
+        · NativeBase, React Native Paper<br>
+        · Mobile responsive UI/UX<br><br>
+
+        <strong>Backend Integration</strong><br>
+        · REST APIs<br>
+        · GraphQL (Apollo Client)<br>
+        · JWT Authentication<br>
+        · File uploads<br>
+        · WebSocket for real-time features<br><br>
+
+        <strong>Mobile-Specific Skills</strong><br>
+        · Camera API<br>
+        · Push notifications<br>
+        · Geolocation<br>
+        · Offline-first apps<br>
+        · Deep linking<br><br>
+
+        <strong>Essential Tools</strong><br>
+        · Node.js & npm/yarn<br>
+        · VS Code tools<br>
+        · Debugging: Flipper, RN Debugger<br>
+        · Git & GitHub<br>
+        · Package managers (npm/yarn)<br>
+      </p>
+    </div>
+
+    <div class="feature">
+      <h3>Kwanini Ni Future?</h3>
+      <p>
+        • Apps zinatawala dunia.<br>
+        • Kila biashara inahitaji mobile systems.<br>
+        • Developers wachache sana Tanzania → demand kubwa.<br>
+        • Unaweza kujenga app inayouzwa mara nyingi.<br>
+        • Utaweza kuweka apps PlayStore — level ya juu kabisa.<br>
+      </p>
+    </div>
+
+    <div class="feature">
+      <h3>Jinsi Ya Kutengeneza Pesa</h3>
+      <p>
+        • Apps za biashara 300k–2M+<br>
+        • Selling ready-made apps (POS, forms, attendance)<br>
+        • Remote projects $200–$1500<br>
+        • Kujenga app yako & kuiuza kwa subscription<br>
+      </p>
+    </div>
+
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section class="reveal">
+  <h2>Ushuhuda Wa Wanafunzi</h2>
+
+  <div class="testimonial"><div class="avatar">R</div><div class="t-text">“Nilipata client wa 220k...”</div></div>
+  <div class="testimonial"><div class="avatar">M</div><div class="t-text">“Simu inaweza kufanya kila kitu...”</div></div>
+  <div class="testimonial"><div class="avatar">A</div><div class="t-text">“Nimepublish app PlayStore...”</div></div>
+</section>
+
+<!-- OFFER -->
+<section id="pay" class="reveal">
+  <h2>OFA MAALUM — Limited Time</h2>
+
+  <div class="offer-box offer">
+    <div class="old">120,000/=</div>
+    <div class="price-big">Sasa: 70,000/= tu</div>
+    <p>Pata full course...</p>
+
+    <!-- WHATSAPP LINK -->
+    <a class="wp-btn" href="https://wa.me/255620657107?text=READY">Tuma Neno “READY” Kuanza ➜</a>
+  </div>
+</section>
+
+<div class="sticky-cta">
+  <a href="https://wa.me/255620657107?text=READY">Tuma “READY” WhatsApp ➜</a>
+</div>
+
+<footer>
+  © 2025 TanzaniaDevAcademy — All Rights Reserved.
+</footer>
+
+</body>
+</html>
